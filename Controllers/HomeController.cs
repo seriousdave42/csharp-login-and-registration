@@ -22,7 +22,15 @@ namespace LoginAndReg.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
+            int? loggedID = HttpContext.Session.GetInt32("LoggedId");
+            if (loggedID == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Success");
+            }
         }
 
         [HttpPost("register")]
@@ -55,7 +63,15 @@ namespace LoginAndReg.Controllers
         [HttpGet("login")]
         public IActionResult LoginForm()
         {
-            return View();
+            int? loggedID = HttpContext.Session.GetInt32("LoggedId");
+            if (loggedID == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Success");
+            }
         }
 
         [HttpPost("login")]
